@@ -4,6 +4,9 @@
 > Built for speed, simplicity, and reliability—plus a tiny PHP tester you can serve locally.
 
 ---
+## Please see this link for documentation: https://docs.google.com/document/d/1CbBLLqyYKtuPC5mxcyPSOP7CdqY8LLGMmciP24ALHzU/view?usp=sharing
+
+---
 
 ## What you get
 
