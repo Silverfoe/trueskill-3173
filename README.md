@@ -63,9 +63,8 @@ Each team’s skill is modeled as a Gaussian:
 * **σ (sigma)**: uncertainty in that estimate
 
 Default prior (TrueSkill environment):
-$
-\mu_0 = 25,\quad \sigma_0 = \frac{25}{3} \approx 8.33
-$
+$\mu_0 = 25,\quad \sigma_0 = \frac{25}{3} \approx 8.33$
+
 As matches occur, winners’ μ tends to increase, losers’ μ decreases, and **σ shrinks** (more data → more certainty).
 
 ### Alliance vs Alliance — win probability
@@ -73,46 +72,30 @@ As matches occur, winners’ μ tends to increase, losers’ μ decreases, and *
 Let Alliance 1 teams be (i \in A_1), Alliance 2 teams be (j \in A_2).
 
 * Aggregate means:
-  $
-  \mu_1 = \sum_{i \in A_1} \mu_i,\quad \mu_2 = \sum_{j \in A_2} \mu_j
-  $
+  $\mu_1 = \sum_{i \in A_1} \mu_i,\quad \mu_2 = \sum_{j \in A_2} \mu_j$
 * Aggregate variance from all players:
-  $
-  \Sigma_{\sigma^2} = \sum_{k \in A_1 \cup A_2} \sigma_k^2
-  $
+  $\Sigma_{\sigma^2} = \sum_{k \in A_1 \cup A_2} \sigma_k^2$
 * Let ( $N = |A_1| + |A_2|$ ) and ( $\beta$ ) be the environment’s performance variance scale.
 
 Effective standard deviation for the skill difference:
-$
-\text{denom} = \sqrt{N \cdot \beta^2 + \Sigma_{\sigma^2}}
-$
+$\text{denom} = \sqrt{N \cdot \beta^2 + \Sigma_{\sigma^2}}$
 
 Define:
-$
-\Delta = \frac{\mu_1 - \mu_2}{\text{denom}}
-$
+$\Delta = \frac{\mu_1 - \mu_2}{\text{denom}}$
 Then the **win probability** for Alliance 1 is:
-$
-P(\text{A1 wins}) = \Phi(\Delta)
-$
+$P(\text{A1 wins}) = \Phi(\Delta)$
 where ( $\Phi$ ) is the standard normal CDF. The model returns:
-$
-\text{team1\_win\_prob} = \Phi(\Delta),\quad \text{team2\_win\_prob} = 1 - \Phi(\Delta)
-$
+$\text{team1\_win\_prob} = \Phi(\Delta),\quad \text{team2\_win\_prob} = 1 - \Phi(\Delta)$
 **Interpretation:** Bigger ( $\mu_1 - \mu_2$ ), or smaller uncertainty (`denom`), yields more decisive probabilities.
 
 ### Conservative rating & confidence
 
 * **Conservative skill**:
-  $
-  \text{conservative\_mu\_3sigma} = \mu - 3\sigma
-  $
+  $\text{conservative\_mu\_3sigma} = \mu - 3\sigma$
   A strict lower-bound estimate; useful for risk-aware rankings.
 
 * **Confidence percent** (how much uncertainty has been reduced vs prior):
-  $
-  \text{confidence\%} = 100 \times \left(1 - \left(\frac{\sigma}{\sigma_0}\right)^2\right)
-  $
+  $\text{confidence\%} = 100 \times \left(1 - \left(\frac{\sigma}{\sigma_0}\right)^2\right)$
   Starts near 0% with no data; climbs toward 100% as σ shrinks.
 
 ---
